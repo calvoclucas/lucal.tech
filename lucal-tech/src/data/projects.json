@@ -1,0 +1,50 @@
+[
+  {
+    "id": "turneq",
+    "title": "turneq",
+    "subtitle": "Enterprise Queue Suite",
+    "badge": "SaaS Propio",
+    "rating": "4.9",
+    "description": "Plataforma de gestión de turnos cloud con Smart TV, síntesis de voz continua y tótems táctiles sincronizados en tiempo real vía WebSockets.",
+    "techs": ["React", "Supabase", "Tailwind CSS", "WebSockets"],
+    "gradient": "from-blue-900/90 via-indigo-950/80 to-slate-950/90",
+    "image": "https://api.microlink.io/?url=https%3A%2F%2Fturneq.vercel.app&screenshot=true&meta=false&embed=screenshot.url",
+    "url": "https://turneq.vercel.app"
+  },
+  {
+    "id": "vkrenderstudio",
+    "title": "VK Render Studio",
+    "subtitle": "Architectural Visualization Studio",
+    "badge": "Sitio en Producción",
+    "rating": "5.0",
+    "description": "Plataforma web internacional para estudio de visualización arquitectónica y renders 3D. Diseño minimalista, soporte multi-idioma (ES/EN) y optimización SEO.",
+    "techs": ["Next.js / React", "Tailwind CSS", "Vercel", "Custom Domain"],
+    "gradient": "from-slate-950/90 via-zinc-900/80 to-stone-950/90",
+    "image": "/projects/vkrender.png",
+    "url": "https://www.vkrenderstudio.com"
+  },
+  {
+    "id": "puro-andar",
+    "title": "Puro Andar",
+    "subtitle": "Turismo & Traslados",
+    "badge": "Plataforma en Producción",
+    "rating": "4.9",
+    "description": "Plataforma web de viajes y traslados turísticos. Catálogo de destinos, panel administrativo dinámico, reserva rápida y atención directa.",
+    "techs": ["React", "Tailwind CSS", "Vercel", "Data Management"],
+    "gradient": "from-cyan-950/90 via-sky-900/80 to-slate-950/90",
+    "image": "https://api.microlink.io/?url=https%3A%2F%2Fpuroandar.vercel.app%2F&screenshot=true&meta=false&embed=screenshot.url",
+    "url": "https://puroandar.vercel.app/"
+  },
+  {
+    "id": "transporte-scropanich",
+    "title": "Transporte Scropanich",
+    "subtitle": "Logística & Transporte de Cargas",
+    "badge": "Sitio Corporativo",
+    "rating": "4.9",
+    "description": "Portal web institucional para empresa de transporte de cargas y encomiendas. Módulos de servicios, mapa de localidades cubiertas y cotización rápida.",
+    "techs": ["React", "Tailwind CSS", "SEO & Performance", "Custom Domain"],
+    "gradient": "from-red-950/90 via-rose-950/80 to-slate-950/90",
+    "image": "https://api.microlink.io/?url=https%3A%2F%2Ftransportescropanich.com%2F&screenshot=true&meta=false&embed=screenshot.url",
+    "url": "https://transportescropanich.com/"
+  }
+]
