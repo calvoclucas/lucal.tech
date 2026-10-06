@@ -50,13 +50,13 @@ export function ContactSection() {
         <h2 className="text-3xl sm:text-5xl font-black tracking-[-0.03em] uppercase text-[#a4adfd]">
           {t.contact.title}
         </h2>
-        <div className="h-[3px] w-full bg-[#a4adfd] mt-2" />
+        <div className="h-0.75 w-full bg-[#a4adfd] mt-2" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div className="lg:col-span-5 space-y-6">
           <div
-            className={`rounded-3xl overflow-hidden shadow-2xl border h-[340px] sm:h-[400px] ${
+            className={`rounded-3xl overflow-hidden shadow-2xl border h-85 sm:h-100 ${
               isDark
                 ? "bg-slate-900 border-slate-800"
                 : "bg-slate-100 border-slate-200"

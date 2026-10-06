@@ -11,7 +11,7 @@ export function AboutSection() {
         <h2 className="hero-title-presentation text-2xl sm:text-4xl text-[#a4adfd]">
           {t.about.title1} <br /> {t.about.title2}
         </h2>
-        <div className="h-[2px] w-full bg-[#a4adfd] mt-1 rounded-full opacity-90" />
+        <div className="h-0.5 w-full bg-[#a4adfd] mt-1 rounded-full opacity-90" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -21,7 +21,7 @@ export function AboutSection() {
             <img
               src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=1000&q=80"
               alt="Engineering development"
-              className="w-full h-[320px] sm:h-[420px] object-cover"
+              className="w-full h-80 sm:h-105 object-cover"
               style={{
                 clipPath: "polygon(0 12%, 100% 0, 100% 88%, 0% 100%)",
               }}

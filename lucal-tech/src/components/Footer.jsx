@@ -13,7 +13,7 @@ export function Footer() {
           : "border-slate-200 text-slate-600 bg-white"
       }`}
     >
-      <div className="max-w-[1240px] mx-auto px-6 sm:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="max-w-310 mx-auto px-6 sm:px-12 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <span
             className={`font-black uppercase tracking-wider ${

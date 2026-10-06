@@ -26,7 +26,7 @@ function MainContent() {
       }`}
     >
       {/* ── 1. HEADER & HERO CON ENCUADRE SUPERIOR (CABEZA VISIBLE) ── */}
-      <div className="relative overflow-hidden bg-[#070b14] border-b border-slate-800/60 min-h-[780px] lg:min-h-[860px] flex flex-col justify-between">
+      <div className="relative overflow-hidden bg-[#070b14] border-b border-slate-800/60 min-h-195 lg:min-h-215 flex flex-col justify-between">
         {/* Foto del Robot: anclada arriba (bg-top) y con escala controlada */}
         <div
           className="absolute inset-0 z-0 bg-cover bg-top pointer-events-none opacity-90 filter contrast-105 brightness-95"
@@ -37,8 +37,8 @@ function MainContent() {
         />
 
         {/* Gradiente suave en la base y los laterales para fundir con el diseño */}
-        <div className="absolute inset-0 z-0 bg-gradient-to-t from-[#070b14] via-transparent to-[#070b14]/50 pointer-events-none" />
-        <div className="absolute inset-0 z-0 bg-gradient-to-r from-[#070b14]/75 via-transparent to-[#070b14]/75 pointer-events-none" />
+        <div className="absolute inset-0 z-0 bg-linear-to-t from-[#070b14] via-transparent to-[#070b14]/50 pointer-events-none" />
+        <div className="absolute inset-0 z-0 bg-linear-to-r from-[#070b14]/75 via-transparent to-[#070b14]/75 pointer-events-none" />
 
         {/* Navbar transparente sobre el fondo */}
         <div className="relative z-20">
@@ -46,7 +46,7 @@ function MainContent() {
         </div>
 
         {/* Contenido desplazado hacia abajo para no tapar la cabeza */}
-        <div className="relative z-10 max-w-[1280px] w-full mx-auto px-6 sm:px-12 pb-24 pt-20 sm:pt-32">
+        <div className="relative z-10 max-w-7xl w-full mx-auto px-6 sm:px-12 pb-24 pt-20 sm:pt-32">
           <HeroSection />
         </div>
       </div>
@@ -57,7 +57,7 @@ function MainContent() {
           isDark ? "bg-white text-slate-900" : "bg-white text-slate-900"
         }`}
       >
-        <div className="max-w-[1240px] mx-auto px-6 sm:px-12">
+        <div className="max-w-310 mx-auto px-6 sm:px-12">
           <ScrollReveal>
             <AboutSection />
           </ScrollReveal>
@@ -72,7 +72,7 @@ function MainContent() {
             : "bg-slate-50 text-slate-900 border-slate-200"
         }`}
       >
-        <div className="max-w-[1240px] mx-auto px-6 sm:px-12 relative z-10">
+        <div className="max-w-310 mx-auto px-6 sm:px-12 relative z-10">
           <ScrollReveal delay={100}>
             <ServicesSection />
           </ScrollReveal>
@@ -85,7 +85,7 @@ function MainContent() {
           isDark ? "bg-white text-slate-900" : "bg-white text-slate-900"
         }`}
       >
-        <div className="max-w-[1240px] mx-auto px-6 sm:px-12">
+        <div className="max-w-310 mx-auto px-6 sm:px-12">
           <ScrollReveal delay={100}>
             <ProjectsSection />
           </ScrollReveal>
@@ -100,7 +100,7 @@ function MainContent() {
             : "bg-slate-50 text-slate-900 border-slate-200"
         }`}
       >
-        <div className="max-w-[1240px] mx-auto px-6 sm:px-12 pb-16">
+        <div className="max-w-310 mx-auto px-6 sm:px-12 pb-16">
           <ScrollReveal>
             <ContactSection />
           </ScrollReveal>

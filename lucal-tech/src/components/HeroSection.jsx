@@ -31,7 +31,7 @@ export function HeroSection() {
 
   return (
     <div id="inicio" className="w-full relative">
-      <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-6 items-end justify-between min-h-[460px] lg:min-h-[520px]">
+      <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-6 items-end justify-between min-h-115 lg:min-h-130">
         {/* Lado Izquierdo: Consola ultra translúcida */}
         <div className="w-full lg:col-span-5 relative z-10 order-2 lg:order-1">
           <div className="p-4 sm:p-5 rounded-2xl bg-black/20 backdrop-blur-md border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.37)] space-y-3 font-mono text-[12px] sm:text-[13px] leading-relaxed transition-all">
@@ -83,7 +83,7 @@ export function HeroSection() {
             <h1 className="hero-title-presentation text-4xl sm:text-5xl lg:text-6xl text-white select-none tracking-[0.12em] drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)]">
               {t.hero.heading}
             </h1>
-            <div className="h-[2px] w-full bg-[#a4adfd] mt-2 rounded-full shadow-[0_0_16px_rgba(164,173,253,0.8)]" />
+            <div className="h-0.5 w-full bg-[#a4adfd] mt-2 rounded-full shadow-[0_0_16px_rgba(164,173,253,0.8)]" />
           </div>
 
           <div className="text-[12px] sm:text-[13px] tracking-[0.2em] uppercase font-light pt-1 flex items-center gap-3 text-white/90 drop-shadow-md lg:justify-end">

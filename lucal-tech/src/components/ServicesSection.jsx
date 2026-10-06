@@ -11,7 +11,7 @@ export function ServicesSection() {
         <h2 className="text-3xl sm:text-5xl font-black tracking-[-0.03em] uppercase text-[#a4adfd]">
           {t.services.title}
         </h2>
-        <div className="h-[3px] w-full bg-[#a4adfd] mt-2" />
+        <div className="h-0.75 w-full bg-[#a4adfd] mt-2" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -26,7 +26,7 @@ export function ServicesSection() {
             <img
               src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=900&q=80"
               alt="Services overview"
-              className="w-full h-[360px] sm:h-[440px] object-cover"
+              className="w-full h-90 sm:h-110 object-cover"
               style={{
                 clipPath: "polygon(0 0, 100% 20%, 100% 100%, 0 85%)",
               }}

@@ -32,7 +32,7 @@ export function Navbar({ whatsappNumber, whatsappMsg }) {
           : "bg-transparent border-b border-white/5 text-white"
       }`}
     >
-      <div className="max-w-[1240px] mx-auto px-6 sm:px-12 h-20 flex items-center justify-between">
+      <div className="max-w-310 mx-auto px-6 sm:px-12 h-20 flex items-center justify-between">
         {/* Logo */}
         <a href="#" className="hover:opacity-90 transition-opacity">
           <Logo dark={isDark || !isScrolled} />

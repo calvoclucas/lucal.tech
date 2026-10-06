@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@theme {
+:root {
   --font-sans: "Montserrat", system-ui, -apple-system, sans-serif;
 }
 

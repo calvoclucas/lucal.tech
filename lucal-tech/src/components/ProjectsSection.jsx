@@ -13,7 +13,7 @@ export function ProjectsSection() {
         <h2 className="hero-title-presentation text-2xl sm:text-4xl text-[#a4adfd]">
           {t.projects.title}
         </h2>
-        <div className="h-[2px] w-full bg-[#a4adfd] mt-1 rounded-full opacity-90" />
+        <div className="h-0.5 w-full bg-[#a4adfd] mt-1 rounded-full opacity-90" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -55,7 +55,7 @@ export function ProjectsSection() {
 
         {/* Columna Derecha: Paneles de imágenes asimétricas */}
         <div className="lg:col-span-6 grid grid-cols-2 gap-4">
-          <div className="rounded-3xl overflow-hidden h-[300px] sm:h-[380px] bg-slate-100 border border-slate-200 shadow-sm">
+          <div className="rounded-3xl overflow-hidden h-75 sm:h-95 bg-slate-100 border border-slate-200 shadow-sm">
             <img
               src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=700&q=80"
               alt="Project screen 1"
@@ -65,7 +65,7 @@ export function ProjectsSection() {
               }}
             />
           </div>
-          <div className="rounded-3xl overflow-hidden h-[300px] sm:h-[380px] mt-6 bg-slate-100 border border-slate-200 shadow-sm">
+          <div className="rounded-3xl overflow-hidden h-75 sm:h-95 mt-6 bg-slate-100 border border-slate-200 shadow-sm">
             <img
               src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=700&q=80"
               alt="Project screen 2"
