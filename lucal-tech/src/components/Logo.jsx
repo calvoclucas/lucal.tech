@@ -1,56 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 
-export function Logo({ dark = true, className = "" }) {
+export function Logo() {
+  const [imgError, setImgError] = useState(false);
+
   return (
-    <div className={`flex items-center gap-3 select-none ${className}`}>
-      <svg
-        width="34"
-        height="34"
-        viewBox="0 0 36 36"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="shrink-0"
-      >
-        <rect
-          width="36"
-          height="36"
-          rx="10"
-          fill={dark ? "#161d31" : "#f1f5f9"}
-        />
-        <path
-          d="M10 9V26H22"
-          stroke={dark ? "#ffffff" : "#0f172a"}
-          strokeWidth="2.75"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M16 14H27M21.5 14V23"
-          stroke="#a4adfd"
-          strokeWidth="2.75"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-        <circle cx="21.5" cy="23" r="1.5" fill="#a4adfd" />
-      </svg>
+    <div className="flex items-center gap-3 select-none">
+      <div className="relative w-9 h-9 rounded-full overflow-hidden p-0.5 bg-gradient-to-tr from-[#00c8f8] via-slate-700 to-transparent border border-cyan-500/30 shadow-[0_0_15px_rgba(0,200,248,0.25)] shrink-0">
+        {!imgError ? (
+          <img
+            src="/logo.png"
+            alt="lucal.tech logo"
+            className="w-full h-full object-cover rounded-full"
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <div className="w-full h-full bg-[#0b111e] flex items-center justify-center font-black text-xs text-[#00c8f8]">
+            LT
+          </div>
+        )}
+      </div>
 
-      <div className="flex flex-col justify-center">
-        <div className="flex items-center gap-1.5 leading-none">
-          <span
-            className={`font-black text-[15px] tracking-[-0.02em] ${
-              dark ? "text-white" : "text-slate-900"
-            }`}
-          >
-            LUCAL
-          </span>
-          <span className="font-black text-[15px] tracking-[-0.02em] text-[#a4adfd]">
-            TECH
-          </span>
-        </div>
-        <span className="text-[9px] font-medium tracking-[0.24em] text-slate-400 uppercase mt-1 leading-none">
-          SOFTWARE STUDIO
+      <div className="flex flex-col text-left font-['Lato',sans-serif]">
+        <span className="text-base font-black tracking-tight text-white leading-none">
+          lucal<span className="text-[#00c8f8]">.tech</span>
+        </span>
+        <span className="text-[9px] font-bold uppercase tracking-[0.28em] text-slate-400 mt-1">
+          IT SOLUTIONS
         </span>
       </div>
     </div>
   );
 }
+
+export default Logo;

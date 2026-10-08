@@ -21,94 +21,93 @@ function MainContent() {
 
   return (
     <div
-      className={`min-h-screen font-sans antialiased transition-colors duration-300 selection:bg-[#a4adfd] selection:text-white ${
-        isDark ? "bg-[#070b14] text-slate-100" : "bg-white text-slate-900"
+      className={`min-h-screen font-['Josefin_Sans',sans-serif] antialiased transition-colors duration-300 selection:bg-[#00c8f8] selection:text-[#070b14] ${
+        isDark ? "bg-[#070b14] text-slate-100" : "bg-[#f8fafc] text-slate-900"
       }`}
     >
-      {/* ── 1. HEADER & HERO CON ENCUADRE SUPERIOR (CABEZA VISIBLE) ── */}
-      <div className="relative overflow-hidden bg-[#070b14] border-b border-slate-800/60 min-h-195 lg:min-h-215 flex flex-col justify-between">
-        {/* Foto del Robot: anclada arriba (bg-top) y con escala controlada */}
-        <div
-          className="absolute inset-0 z-0 bg-cover bg-top pointer-events-none opacity-90 filter contrast-105 brightness-95"
-          style={{
-            backgroundImage: `url('/fondo.jpg')`,
-            backgroundPosition: "center 15%", // Ajuste fino para centrar la cabeza blanca
-          }}
-        />
+      {/* ── 1. HEADER & HERO (Entrada desde arriba) ── */}
+      <div
+        className={`relative w-full border-b overflow-hidden transition-colors ${
+          isDark
+            ? "border-slate-800/80 bg-[#070b14]"
+            : "border-slate-200 bg-white"
+        }`}
+      >
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] bg-[#00c8f8]/5 blur-[140px] rounded-full pointer-events-none" />
 
-        {/* Gradiente suave en la base y los laterales para fundir con el diseño */}
-        <div className="absolute inset-0 z-0 bg-linear-to-t from-[#070b14] via-transparent to-[#070b14]/50 pointer-events-none" />
-        <div className="absolute inset-0 z-0 bg-linear-to-r from-[#070b14]/75 via-transparent to-[#070b14]/75 pointer-events-none" />
+        <Navbar whatsappNumber={whatsappNumber} whatsappMsg={whatsappMsg} />
 
-        {/* Navbar transparente sobre el fondo */}
-        <div className="relative z-20">
-          <Navbar whatsappNumber={whatsappNumber} whatsappMsg={whatsappMsg} />
-        </div>
-
-        {/* Contenido desplazado hacia abajo para no tapar la cabeza */}
-        <div className="relative z-10 max-w-7xl w-full mx-auto px-6 sm:px-12 pb-24 pt-20 sm:pt-32">
-          <HeroSection />
+        {/* Espacio para la navbar fixed */}
+        <div className="pt-20">
+          <ScrollReveal direction="down" delay={100}>
+            <HeroSection whatsappNumber={whatsappNumber} />
+          </ScrollReveal>
         </div>
       </div>
 
-      {/* ── 2. ABOUT (Fondo blanco contrastado) ── */}
+      {/* ── 2. ABOUT (Entrada desde la izquierda) ── */}
       <section
-        className={`w-full py-24 sm:py-32 transition-colors ${
-          isDark ? "bg-white text-slate-900" : "bg-white text-slate-900"
+        id="nosotros"
+        className={`w-full py-24 border-b overflow-hidden transition-colors ${
+          isDark
+            ? "border-slate-800/80 bg-[#090e1a] text-white"
+            : "border-slate-200 bg-slate-50 text-slate-900"
         }`}
       >
-        <div className="max-w-310 mx-auto px-6 sm:px-12">
-          <ScrollReveal>
+        <div className="w-full px-6 sm:px-12 lg:px-16 xl:px-20">
+          <ScrollReveal direction="left" delay={150}>
             <AboutSection />
           </ScrollReveal>
         </div>
       </section>
 
-      {/* ── 3. SERVICES (Fondo oscuro) ── */}
+      {/* ── 3. SERVICES (Entrada desde la derecha) ── */}
       <section
-        className={`w-full py-24 sm:py-32 relative overflow-hidden transition-colors border-y ${
+        id="servicios"
+        className={`w-full py-24 border-b overflow-hidden transition-colors ${
           isDark
-            ? "bg-[#070b14] text-white border-slate-800/40"
-            : "bg-slate-50 text-slate-900 border-slate-200"
+            ? "border-slate-800/80 bg-[#070b14] text-white"
+            : "border-slate-200 bg-white text-slate-900"
         }`}
       >
-        <div className="max-w-310 mx-auto px-6 sm:px-12 relative z-10">
-          <ScrollReveal delay={100}>
+        <div className="w-full px-6 sm:px-12 lg:px-16 xl:px-20">
+          <ScrollReveal direction="right" delay={150}>
             <ServicesSection />
           </ScrollReveal>
         </div>
       </section>
 
-      {/* ── 4. PROJECTS (Fondo blanco) ── */}
+      {/* ── 4. PROJECTS (Entrada desde abajo) ── */}
       <section
-        className={`w-full py-24 sm:py-32 transition-colors ${
-          isDark ? "bg-white text-slate-900" : "bg-white text-slate-900"
+        id="proyectos"
+        className={`w-full py-24 border-b overflow-hidden transition-colors ${
+          isDark
+            ? "border-slate-800/80 bg-[#090e1a] text-white"
+            : "border-slate-200 bg-slate-50 text-slate-900"
         }`}
       >
-        <div className="max-w-310 mx-auto px-6 sm:px-12">
-          <ScrollReveal delay={100}>
+        <div className="w-full px-6 sm:px-12 lg:px-16 xl:px-20">
+          <ScrollReveal direction="up" delay={150}>
             <ProjectsSection />
           </ScrollReveal>
         </div>
       </section>
 
-      {/* ── 5. CONTACT & FOOTER ── */}
+      {/* ── 5. CONTACTO & FOOTER (Entrada desde la izquierda) ── */}
       <section
-        className={`w-full pt-24 sm:pt-32 transition-colors border-t ${
-          isDark
-            ? "bg-[#070b14] text-white border-slate-800/40"
-            : "bg-slate-50 text-slate-900 border-slate-200"
+        id="contacto"
+        className={`w-full pt-24 overflow-hidden transition-colors ${
+          isDark ? "bg-[#070b14] text-white" : "bg-white text-slate-900"
         }`}
       >
-        <div className="max-w-310 mx-auto px-6 sm:px-12 pb-16">
-          <ScrollReveal>
+        <div className="w-full px-6 sm:px-12 lg:px-16 xl:px-20 pb-20">
+          <ScrollReveal direction="left" delay={150}>
             <ContactSection />
           </ScrollReveal>
         </div>
         <Footer />
       </section>
 
-      {/* Botón flotante WhatsApp */}
       <WhatsAppSticky
         whatsappNumber={whatsappNumber}
         whatsappMsg={whatsappMsg}
