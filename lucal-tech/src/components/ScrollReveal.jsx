@@ -1,60 +1,78 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
+import { motion } from "framer-motion";
 
 /**
- * direction: "left" | "right" | "up" | "down"
+ * direction: "up" | "down" | "left" | "right" | "none"
+ * delay: en segundos (ej: 0.2) o milisegundos (ej: 200)
+ * duration: en segundos (default 1.8s para entrada cinematográfica)
+ * distance: "xs" (10px) | "sm" (16px) | "md" (24px)
  */
 export function ScrollReveal({
   children,
   direction = "up",
   delay = 0,
+  duration = 1.8,
+  distance = "sm",
   className = "",
 }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const domRef = useRef(null);
+  const delayInSeconds = delay > 10 ? delay / 1000 : delay;
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-          }
-        });
-      },
-      { threshold: 0.15 },
-    );
+  // Desplazamientos mínimos: menos píxeles = cero sensación de salto
+  const distances = {
+    xs: 10,
+    sm: 16,
+    md: 24,
+  };
 
-    const current = domRef.current;
-    if (current) observer.observe(current);
+  const offset = distances[distance] || distances.sm;
 
-    return () => {
-      if (current) observer.unobserve(current);
-    };
-  }, []);
-
-  const getTransformStyle = () => {
-    if (isVisible) return "translate-x-0 translate-y-0 opacity-100";
+  const getInitialPosition = () => {
     switch (direction) {
-      case "left":
-        return "-translate-x-16 opacity-0";
-      case "right":
-        return "translate-x-16 opacity-0";
-      case "down":
-        return "-translate-y-16 opacity-0";
       case "up":
+        return { y: offset, x: 0 };
+      case "down":
+        return { y: -offset, x: 0 };
+      case "left":
+        return { x: offset, y: 0 };
+      case "right":
+        return { x: -offset, y: 0 };
+      case "none":
       default:
-        return "translate-y-16 opacity-0";
+        return { x: 0, y: 0 };
     }
   };
 
+  const initialOffset = getInitialPosition();
+
   return (
-    <div
-      ref={domRef}
-      style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-all duration-700 ease-out transform ${getTransformStyle()} ${className}`}
+    <motion.div
+      initial={{
+        opacity: 0,
+        x: initialOffset.x,
+        y: initialOffset.y,
+        filter: "blur(8px)",
+      }}
+      whileInView={{
+        opacity: 1,
+        x: 0,
+        y: 0,
+        filter: "blur(0px)",
+      }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{
+        // Curva suave continua sin tirones
+        ease: [0.22, 1, 0.36, 1],
+        duration: duration,
+        delay: delayInSeconds,
+        opacity: {
+          duration: duration * 1.1, // El fade dura un poco más para que no corte
+          ease: "easeInOut",
+        },
+      }}
+      className={className}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }
 

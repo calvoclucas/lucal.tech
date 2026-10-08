@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Terminal, CheckCircle2, Cpu } from "lucide-react";
 import { useApp } from "../context/AppContext";
 
 export function HeroSection({ whatsappNumber = "5491124868309" }) {
@@ -21,10 +21,30 @@ export function HeroSection({ whatsappNumber = "5491124868309" }) {
         isDark ? "text-white" : "text-slate-900"
       }`}
     >
-      {/* ── Malla técnica de fondo adaptada ── */}
+      {/* ── VIDEO DE FONDO ── */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none z-0"
+      >
+        <source src="/video.mp4" type="video/mp4" />
+      </video>
+
+      {/* ── OVERLAY DE CONTRASTE Y TINTA ADAPTATIVA ── */}
       <div
-        className={`absolute inset-0 pointer-events-none transition-opacity ${
-          isDark ? "opacity-[0.04]" : "opacity-[0.06]"
+        className={`absolute inset-0 pointer-events-none transition-colors duration-500 z-0 ${
+          isDark
+            ? "bg-[#08090b]/85 backdrop-blur-[2px]"
+            : "bg-white/75 backdrop-blur-[2px]"
+        }`}
+      />
+
+      {/* ── Malla técnica sobre el video ── */}
+      <div
+        className={`absolute inset-0 pointer-events-none transition-opacity z-0 ${
+          isDark ? "opacity-[0.05]" : "opacity-[0.06]"
         }`}
         style={{
           backgroundImage: `linear-gradient(${isDark ? "#ffffff" : "#000000"} 1px, transparent 1px), linear-gradient(90deg, ${isDark ? "#ffffff" : "#000000"} 1px, transparent 1px)`,
@@ -34,20 +54,20 @@ export function HeroSection({ whatsappNumber = "5491124868309" }) {
 
       {/* Luces volumétricas orgánicas */}
       <div
-        className={`absolute top-1/4 right-1/4 w-[550px] h-[550px] blur-[160px] rounded-full pointer-events-none ${
-          isDark ? "bg-[#00c8f8]/14" : "bg-[#00c8f8]/20"
+        className={`absolute top-1/4 right-1/4 w-[550px] h-[550px] blur-[160px] rounded-full pointer-events-none z-0 ${
+          isDark ? "bg-[#00c8f8]/15" : "bg-[#00c8f8]/20"
         }`}
       />
       <div
-        className={`absolute bottom-1/3 left-1/10 w-[420px] h-[420px] blur-[180px] rounded-full pointer-events-none ${
+        className={`absolute bottom-1/3 left-1/10 w-[420px] h-[420px] blur-[180px] rounded-full pointer-events-none z-0 ${
           isDark ? "bg-purple-600/10" : "bg-purple-400/15"
         }`}
       />
 
       {/* Ondas vectoriales adaptadas */}
       <svg
-        className={`absolute bottom-10 left-0 w-full h-48 pointer-events-none ${
-          isDark ? "opacity-20" : "opacity-35"
+        className={`absolute bottom-10 left-0 w-full h-48 pointer-events-none z-0 ${
+          isDark ? "opacity-25" : "opacity-35"
         }`}
         viewBox="0 0 1440 320"
         fill="none"
@@ -96,8 +116,8 @@ export function HeroSection({ whatsappNumber = "5491124868309" }) {
         </defs>
       </svg>
 
-      {/* ── CUERPO PRINCIPAL ASIMÉTRICO EXTENDIDO ── */}
-      <div className="w-full px-6 sm:px-10 lg:px-14 xl:px-20 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center my-auto relative z-10">
+      {/* ── CUERPO PRINCIPAL ASIMÉTRICO ── */}
+      <div className="w-full px-6 sm:px-10 lg:px-14 xl:px-20 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center my-auto relative z-10">
         {/* Lado Izquierdo */}
         <div className="lg:col-span-6 space-y-7">
           <div
@@ -105,7 +125,7 @@ export function HeroSection({ whatsappNumber = "5491124868309" }) {
               isDark ? "text-slate-400" : "text-slate-600"
             }`}
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-[#00c8f8]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00c8f8] shadow-[0_0_8px_#00c8f8]" />
             <span>Software & Architecture</span>
           </div>
 
@@ -116,12 +136,15 @@ export function HeroSection({ whatsappNumber = "5491124868309" }) {
           >
             trusted <br />
             software <br />
-            partner<span className="text-[#00c8f8]">.</span>
+            partner
+            <span className="text-[#00c8f8] drop-shadow-[0_0_12px_rgba(0,200,248,0.6)]">
+              .
+            </span>
           </h1>
 
           <p
             className={`text-sm sm:text-base font-light leading-relaxed max-w-lg transition-colors ${
-              isDark ? "text-slate-400" : "text-slate-600"
+              isDark ? "text-slate-300" : "text-slate-600"
             }`}
           >
             Desarrollamos soluciones web de alto impacto, plataformas
@@ -131,13 +154,15 @@ export function HeroSection({ whatsappNumber = "5491124868309" }) {
 
           <div>
             <a
-              href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hola Lucal TECH! Me gustaría cotizar un proyecto.")}`}
+              href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+                "Hola Lucal TECH! Me gustaría cotizar un proyecto.",
+              )}`}
               target="_blank"
               rel="noreferrer"
-              className={`inline-flex items-center gap-3 text-[12px] font-bold uppercase tracking-[0.2em] px-8 py-4 transition-all shadow-xl active:scale-95 ${
+              className={`inline-flex items-center gap-3 text-[12px] font-bold uppercase tracking-[0.2em] px-8 py-4 transition-all duration-300 active:scale-95 border ${
                 isDark
-                  ? "bg-white hover:bg-slate-200 text-[#08090b]"
-                  : "bg-slate-950 hover:bg-slate-800 text-white shadow-slate-300"
+                  ? "bg-white text-[#08090b] border-white/20 hover:bg-slate-100 hover:shadow-[0_0_25px_rgba(0,200,248,0.45)] hover:border-[#00c8f8]"
+                  : "bg-slate-950 text-white border-slate-900 hover:bg-slate-800 shadow-xl shadow-slate-300/60 hover:shadow-[0_0_20px_rgba(0,200,248,0.35)]"
               }`}
             >
               <span>Consultar Proyecto</span>
@@ -145,76 +170,27 @@ export function HeroSection({ whatsappNumber = "5491124868309" }) {
             </a>
           </div>
         </div>
-
-        {/* Lado Derecho: Escultura Cromática 3D + Ficha Técnica */}
-        <div className="lg:col-span-6 relative flex items-center justify-center lg:justify-end">
-          <div
-            className={`absolute -top-6 right-2 sm:right-6 z-20 w-48 sm:w-52 p-4 backdrop-blur-xl shadow-2xl text-left transition-colors border rounded-xl ${
-              isDark
-                ? "bg-[#0e1117]/85 border-white/10 text-white"
-                : "bg-white/90 border-slate-200 text-slate-900 shadow-slate-200/80"
-            }`}
-          >
-            <div className="flex items-center justify-between text-[10px] uppercase tracking-widest text-slate-500 mb-1.5 font-mono">
-              <span>Stack Status</span>
-              <span className="text-emerald-500 font-bold">LIVE</span>
-            </div>
-            <p
-              className={`text-xs font-semibold ${isDark ? "text-white" : "text-slate-900"}`}
-            >
-              Arquitecturas Cloud & Edge
-            </p>
-            <p
-              className={`text-[11px] mt-1 font-light leading-snug ${isDark ? "text-slate-400" : "text-slate-600"}`}
-            >
-              Despliegue continuo con latencia mínima y sincronización en tiempo
-              real.
-            </p>
-          </div>
-
-          <div className="relative w-full max-w-[420px] sm:max-w-[460px] aspect-square flex items-center justify-center">
-            <div className="relative w-64 sm:w-80 aspect-square rounded-full p-[2px] bg-gradient-to-tr from-[#00c8f8] via-purple-600 to-amber-500 shadow-[0_0_100px_rgba(0,200,248,0.25)]">
-              <div
-                className={`w-full h-full rounded-full overflow-hidden relative flex items-center justify-center transition-colors ${
-                  isDark ? "bg-[#08090b]" : "bg-slate-950"
-                }`}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#00c8f8]/25 via-transparent to-pink-500/20 mix-blend-screen" />
-                <div className="w-44 h-44 rounded-full bg-gradient-to-tl from-cyan-400/35 to-transparent blur-2xl" />
-
-                <div className="relative z-10 text-center font-mono">
-                  <span className="text-3xl font-black tracking-widest text-white block">
-                    LT<span className="text-[#00c8f8]">.</span>
-                  </span>
-                  <span className="text-[10px] tracking-[0.3em] uppercase text-slate-400 block mt-1">
-                    ENGINEERING
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div className="absolute -bottom-5 w-3/4 h-8 bg-gradient-to-r from-transparent via-[#00c8f8]/35 to-transparent blur-xl rounded-full" />
-          </div>
-        </div>
       </div>
 
       {/* ── STACK HORIZONTAL EN TODO EL ANCHO ── */}
       <div
         className={`w-full pt-10 border-t relative z-10 px-6 sm:px-10 lg:px-14 xl:px-20 transition-colors ${
-          isDark ? "border-white/5" : "border-slate-200"
+          isDark
+            ? "border-white/10 bg-gradient-to-t from-[#08090b]/80 to-transparent"
+            : "border-slate-200/80 bg-gradient-to-t from-white/70 to-transparent"
         }`}
       >
         <div
-          className={`flex flex-wrap items-center justify-between gap-5 transition-opacity ${
+          className={`flex flex-wrap items-center justify-between gap-5 transition-all duration-300 ${
             isDark
-              ? "opacity-40 hover:opacity-85 text-slate-300"
-              : "opacity-60 hover:opacity-100 text-slate-700"
+              ? "text-slate-200 opacity-80 hover:opacity-100"
+              : "text-slate-800 opacity-80 hover:opacity-100"
           }`}
         >
           {partners.map((item, idx) => (
             <span
               key={idx}
-              className="text-xs sm:text-sm font-bold tracking-[0.25em] uppercase font-mono"
+              className="text-xs sm:text-sm font-bold tracking-[0.25em] uppercase font-mono transition-transform duration-200 hover:scale-105 hover:text-[#00c8f8]"
             >
               {item}
             </span>
