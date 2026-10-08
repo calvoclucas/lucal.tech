@@ -207,15 +207,13 @@ export function Footer() {
             <span
               className={`font-bold tracking-wider ${isDark ? "text-white" : "text-slate-900"}`}
             >
-              LUCAL<span className="text-[#00c8f8]">.TECH</span>[cite: 9]
+              LUCAL<span className="text-[#00c8f8]">.TECH</span>
             </span>
             <span>—</span>
             <span>{t.footer.rights || "Todos los derechos reservados."}</span>
           </div>
 
           <div className="flex items-center gap-4 text-[11px] tracking-wider">
-            <span>PROD V2.6</span>
-            <span>•</span>
             <span className="text-[#00c8f8] font-bold">SECURED STACK</span>
           </div>
         </div>

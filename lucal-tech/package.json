@@ -4,7 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "capture:insta": "node capture-instagram.js",
+    "capture:dev": "node capture-instagram.js",
+    "capture:prod": "node capture-instagram.js prod",
+    "record:dev": "node record-story.js",
+    "record:prod": "node record-story.js prod",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",

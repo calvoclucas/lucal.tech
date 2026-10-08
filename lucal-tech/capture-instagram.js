@@ -2,83 +2,143 @@ import { chromium, devices } from "playwright";
 import fs from "fs";
 import path from "path";
 
-// ── CONFIGURACIÓN ──
-// Cambiá a localhost:3000 (o tu puerto de Vite/Next) o el link de Vercel desplegado
-const TARGET_URL = "http://localhost:5173";
+const isProd = process.argv.includes("prod");
+const TARGET_URL = isProd
+  ? "https://www.lucaltech.com.ar/"
+  : "http://localhost:5173/";
+
 const OUTPUT_DIR = "./screenshots-instagram";
 
-// Secciones a capturar (definí el id o selector de cada una y el nombre del archivo)
-const SECTIONS = [
-  { id: "hero", name: "01-hero" },
-  { id: "servicios", name: "02-servicios" },
-  { id: "proyectos", name: "03-proyectos" },
-  { id: "documentacion", name: "04-documentacion" },
-  { id: "contacto", name: "05-contacto" },
+// Secciones e items específicos a enfocar directamente
+const CAPTURES = [
+  // 1. Hero
+  { selector: "div.pt-20", name: "01-hero" },
+
+  // 2. Nosotros
+  { selector: "#nosotros", name: "02-nosotros-intro" },
+
+  // 3. Servicios
+  {
+    selector: "#servicios h2, #servicios h1, #servicios",
+    name: "03-servicios-header",
+  },
+  {
+    selector: "#servicios .grid > *:nth-child(1)",
+    name: "03-servicios-item-1",
+  },
+  {
+    selector: "#servicios .grid > *:nth-child(2)",
+    name: "03-servicios-item-2",
+  },
+
+  // 4. Proyectos (centra cada proyecto individual)
+  { selector: "#proyectos h2, #proyectos h1", name: "04-proyectos-header" },
+  {
+    selector:
+      "#proyectos article:nth-of-type(1), #proyectos .space-y-12 > *:nth-child(1)",
+    name: "04-proyecto-1",
+  },
+  {
+    selector:
+      "#proyectos article:nth-of-type(2), #proyectos .space-y-12 > *:nth-child(2)",
+    name: "04-proyecto-2",
+  },
+  {
+    selector:
+      "#proyectos article:nth-of-type(3), #proyectos .space-y-12 > *:nth-child(3)",
+    name: "04-proyecto-3",
+  },
+  {
+    selector:
+      "#proyectos article:nth-of-type(4), #proyectos .space-y-12 > *:nth-child(4)",
+    name: "04-proyecto-4",
+  },
+
+  // 5. Contacto
+  { selector: "#contacto", name: "05-contacto" },
 ];
 
 async function captureForInstagram() {
-  if (!fs.existsSync(OUTPUT_DIR)) {
-    fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+  if (fs.existsSync(OUTPUT_DIR)) {
+    fs.rmSync(OUTPUT_DIR, { recursive: true, force: true });
   }
+  fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
-  // Lanzar navegador simulando un iPhone 15 Pro (relación vertical para mobile)
+  console.log(`🌐 Modo: ${isProd ? "PRODUCCIÓN" : "LOCAL"}`);
+  console.log(`🚀 Conectando a ${TARGET_URL}...`);
+
   const browser = await chromium.launch({ headless: true });
-  const iphone = devices["iPhone 15 Pro"];
 
+  // Tamaño exacto pantalla vertical de smartphone (390 x 844 px)
+  const iphone = devices["iPhone 14 Pro"];
   const context = await browser.newContext({
     ...iphone,
-    deviceScaleFactor: 3, // Calidad Retina x3 (fotos nítidas en Instagram)
+    deviceScaleFactor: 2,
   });
 
   const page = await context.newPage();
 
-  console.log(`🚀 Navegando a ${TARGET_URL}...`);
-  await page.goto(TARGET_URL, { waitUntil: "networkidle" });
+  try {
+    await page.goto(TARGET_URL, { waitUntil: "networkidle", timeout: 35000 });
+  } catch (error) {
+    console.error(`❌ No se pudo cargar ${TARGET_URL}`);
+    await browser.close();
+    process.exit(1);
+  }
 
-  // Esperar a que el video o fuentes terminen de cargar
-  await page.waitForTimeout(1500);
+  // Esperar carga inicial
+  await page.waitForTimeout(2000);
 
-  for (const section of SECTIONS) {
-    console.log(`📸 Capturando sección: ${section.id}...`);
+  // Ocultar Navbar fija y botón flotante de WhatsApp para que no tapen la pantalla
+  await page.addStyleTag({
+    content: `
+      nav, header, [class*="Navbar"], 
+      a[href*="wa.me"], button[aria-label*="whatsapp" i], .fixed {
+        display: none !important;
+      }
+      /* Quitar padding top sobrante al volar la navbar */
+      div.pt-20 {
+        padding-top: 1rem !important;
+      }
+    `,
+  });
 
-    // Busca la sección por ID (ej: id="hero") o como selector CSS
-    const element = page.locator(`#${section.id}`);
+  for (const item of CAPTURES) {
+    const element = page.locator(item.selector).first();
 
     if ((await element.count()) > 0) {
-      // Hace scroll suave hasta la sección para que gatillen los ScrollReveal
-      await element.scrollIntoViewIfNeeded();
+      console.log(`📸 Capturando: ${item.name}...`);
 
-      // Tiempo de espera para que las animaciones suaves terminen de asentarse
-      await page.waitForTimeout(2000);
-
-      const filePath = path.join(OUTPUT_DIR, `${section.name}.png`);
-
-      // Toma captura solo del elemento de esa sección
-      await element.screenshot({
-        path: filePath,
-        type: "png",
+      // Alinea el elemento exactamente al inicio de la pantalla
+      await element.evaluate((el) => {
+        el.scrollIntoView({ behavior: "instant", block: "start" });
       });
 
-      console.log(`✅ Guardada en: ${filePath}`);
+      // Si querés darle un pequeño respiro arriba (margen de 24px)
+      await page.evaluate(() => {
+        window.scrollBy({ top: -24, behavior: "instant" });
+      });
+
+      // Esperar a que el ScrollReveal termine su animación suave
+      await page.waitForTimeout(1600);
+
+      const filePath = path.join(OUTPUT_DIR, `${item.name}.png`);
+
+      await page.screenshot({
+        path: filePath,
+        fullPage: false, // Captura solo la pantalla visible de 390x844
+      });
+
+      console.log(`   ✅ Guardada: ${item.name}.png`);
     } else {
-      console.warn(`⚠️ No se encontró el selector #${section.id}`);
+      console.warn(`   ⚠️ Saltando (no encontrado): ${item.name}`);
     }
   }
 
-  // Captura extra: Pantalla completa en formato Story vertical largo
-  console.log("📸 Capturando landing completa vertical...");
-  await page.screenshot({
-    path: path.join(OUTPUT_DIR, "00-landing-mobile-completa.png"),
-    fullPage: true,
-  });
-
   await browser.close();
   console.log(
-    "\n🎉 ¡Listo! Todas las capturas guardadas en la carpeta /screenshots-instagram",
+    `\n🎉 ¡Listo! Todas las capturas limpias y sin navbar en: ${OUTPUT_DIR}`,
   );
 }
 
-captureForInstagram().catch((err) => {
-  console.error("Error al capturar:", err);
-  process.exit(1);
-});
+captureForInstagram();
